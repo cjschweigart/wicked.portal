@@ -39,7 +39,7 @@ mixin apiDef(anApi)
                 img.pull-right(src='/images/key-icon-32.png' title='API is secured over API keys')
 
       .box-body
-        a(href='/apis/#{anApi.id}')
+        a(href='/apis/#{anApi.id}' title="#{anApi.name}")
             h4= anApi.name
         if anApi.deprecated
             p.red <b>Deprecated</b>
