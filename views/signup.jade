@@ -1,43 +1,50 @@
 extends auth_layout
 
-block scripts
-    script(src='https://www.google.com/recaptcha/api.js')
-    script(type='text/javascript').
-        function verifyContent() {
-            var firstName = $('#firstname').val();
-            var lastName = $('#lastname').val();
-            var email = $('#email').val();
-            var password = $('#password').val();
-            var password2 = $('#password2').val();
+//- block vars
+//-     - var homelink="/"
+//-     - var apislink="/apis"
+//-     - var appslink="/applications"
+//-     - var userlink="/users/me"
+//-     - var helplink="/help"
 
-            var firstnameError = '';
-            var lastnameError = '';
-            var emailError = '';
-            var passwordError = '';
-            var password2Error = '';
+block scripts
+    script(src="https://www.google.com/recaptcha/api.js")
+    script(type="text/javascript").
+        function verifyContent() {
+            var firstName = $("#firstname").val();
+            var lastName = $("#lastname").val();
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var password2 = $("#password2").val();
+
+            var firstnameError = "";
+            var lastnameError = "";
+            var emailError = "";
+            var passwordError = "";
+            var password2Error = "";
             if (!firstName)
-                firstnameError = 'Please enter a value for the first name.';
+                firstnameError = "Please enter a value for the first name.";
             if (!lastName)
-                lastnameError = 'Please enter a value for the last name.';
+                lastnameError = "Please enter a value for the last name.";
             if (!email)
-                emailError = 'Please enter a value for the email address. ';
+                emailError = "Please enter a value for the email address.";
             else if (!/.+@.+/.test(email))
-                emailError = 'Email address invalid. ';
+                emailError = "Email address invalid.";
             if (!password
                 || (password.length < 6 || password.length > 24))
-                passwordError = 'Please enter a password, more than 5, less than 25 characters long.';
+                passwordError = "Please enter a password, more than 5, less than 25 characters long.";
             if (password
                 && (password != password2))
-                password2Error = 'Passwords do not match.';
+                password2Error = "Passwords do not match.";
 
             try {
-                $('#errorFirstname').text(firstnameError);
-                $('#errorLastname').text(lastnameError);
-                $('#errorEmail').text(emailError);
-                $('#errorPassword').text(passwordError);
-                $('#errorPassword2').text(password2Error);
+                $("#errorFirstname").text(firstnameError);
+                $("#errorLastname").text(lastnameError);
+                $("#errorEmail").text(emailError);
+                $("#errorPassword").text(passwordError);
+                $("#errorPassword2").text(password2Error);
             } catch (err) {
-                alert('Validation errored! Check your input values.');
+                alert("Validation errored! Check your input values.");
                 return false;
             }
 
@@ -66,9 +73,12 @@ block content
         - var useLocal = glob.auth.local && glob.auth.local.useLocal
         - var useSocial = useAdfs || useGithub || useGoogle || useOauth2
 
-        h4.
-            By signing up to this portal, you agree to our <a href='/content/terms-and-conditions'>Terms
-            and Conditions</a> and the <a href='/content/privacy-policy'>Privacy/Cookie Policy</a>.
+        h4
+            | By signing up to this portal, you agree to our&nbsp;
+            a(href="/content/terms-and-conditions" title="Terms and Conditions") Terms and Conditions
+            | &nbsp;and the&nbsp;
+            a(href="https://clarivate.com/legal/privacy-statement/" title="Privacy/Cookie Policy") Privacy/Cookie Policy
+        //- /content/privacy-policy
 
         br
 
@@ -77,19 +87,19 @@ block content
                 h4 Use account federation
 
             if useAdfs
-                a(href='/login/adfs').btn.btn-block.btn-primary
+                a(href="/login/adfs" title="Sign up with ADFS").btn.btn-block.btn-primary
                     i.fa.fa-cloud.fa-lg
                     span &nbsp; Sign up with ADFS
             if useGithub
-                a(href="/login/github").btn.btn-block.btn-github
+                a(href="/login/github" title="Sign up with GitHub").btn.btn-block.btn-github
                     i.fa.fa-github.fa-lg
                     span &nbsp; Sign up with GitHub
             if useGoogle
-                a(href="/login/google").btn.btn-block.btn-google
+                a(href="/login/google" title="Sign up with Google").btn.btn-block.btn-google
                     i.fa.fa-google.fa-lg
                     span &nbsp; Sign up with Google
             if useOauth2
-                a(href="/login/oauth2").btn.btn-block.btn-oauth2
+                a(href="/login/oauth2" title="Sign up").btn.btn-block.btn-oauth2
                     i.fa.fa-sign-in.fa-lg
                     span &nbsp; Sign up
 
@@ -99,50 +109,50 @@ block content
         if useLocal
             h4 Create a new Account
 
-            form(role='form' action='/signup' onsubmit='return verifyContent();' method='post')
+            form(role="form" action="/signup" onsubmit="return verifyContent();" method="post")
                 .form-group
-                    label(for='firstname') First Name:
-                    input(type='string' id='firstname' name='firstname').form-control
+                    label(for="firstname") First Name:
+                    input(type="string" id="firstname" name="firstname").form-control
                     small
-                        span(id='errorFirstname' style='color:red')
+                        span(id="errorFirstname" style="color:red")
                 .form-group
-                    label(for='lastname') Last Name:
-                    input(type='string' id='lastname' name='lastname').form-control
+                    label(for="lastname") Last Name:
+                    input(type="string" id="lastname" name="lastname").form-control
                     small
-                        span(id='errorLastname' style='color:red')
+                        span(id="errorLastname" style="color:red")
                 .form-group
-                    label(for='email') Email address:
-                    input(type='string' id='email' name='email').form-control
+                    label(for="email") Email address:
+                    input(type="string" id="email" name="email").form-control
                     small
-                        span(id='errorEmail' style='color:red')
+                        span(id="errorEmail" style="color:red")
                         span The email address will be used as a username for the API Portal; you will need to verify it. We will send an email to this address with a verification link.
                 .form-group
-                    label(for='password') Password:
-                    input(type='password' id='password' name='password' minlength='6').form-control
+                    label(for="password") Password:
+                    input(type="password" id="password" name="password" minlength="6").form-control
                     small
-                        span(id='errorPassword' style='color:red')
+                        span(id="errorPassword" style="color:red")
                 .form-group
-                    label(for='password2') Confirm Password:
-                    input(type='password' id='password2' name='password2' minlength='6').form-control
+                    label(for="password2") Confirm Password:
+                    input(type="password" id="password2" name="password2" minlength="6").form-control
                     small
-                        span(id='errorPassword2' style='color:red')
+                        span(id="errorPassword2" style="color:red")
                 br
                 if glob.recaptcha && glob.recaptcha.useRecaptcha
-                    div(class='g-recaptcha' data-sitekey='#{glob.recaptcha.websiteKey}')
+                    div(class="g-recaptcha" data-sitekey="#{glob.recaptcha.websiteKey}")
                     br
-                button(class='btn btn-primary btn-block' type='submit') Register
+                button(class="btn btn-primary btn-block" type="submit") Register
 
             h5
-                a(href='/forgotpassword') Forgot password?
+                a(href="/forgotpassword" title="Forgot password") Forgot password?
 
         else
-            div(role='alert').alert.alert-danger
+            div(role="alert").alert.alert-danger
                 span(aria-hidden="true").glyphicon.glyphicon-exclamation-sign
                 span.sr-only Error:
                 | &nbsp; This portal does not allow for local user sign up. Please use a different way to log in.
 
         h5
-            a(href='/login') Already have an account? Log in.
+            a(href="/login" title="Login") Already have an account? Log in.
 
     else
         h2 Welcome!
@@ -154,15 +164,17 @@ block content
         h4 What's next?
 
         h5
-            a(href='/') Go to the home page
+            a(href="/" title="Go to the home page") Go to the home page
         h5
-            a(href='/apis') View APIs
+            a(href="/apis" title="View APIs") View APIs
         h5
-            a(href='/applications') Register and View Your Applications
+            a(href="/applications" title="Register and View Your Applications") Register and View Your Applications
         h5
-            a(href='/users/me') User Profile
+            a(href="/users/me" title="User Profile") User Profile
         h5
-            a(href='/help') Help
+            a(href="/help" title="Help") Help
         br
 
-        p Not you? <a href="/login/logout">Logout</a> first and then login with your own account.
+        p Not you?
+            a(href="/login/logout" title="Logout") Logout
+            | &nbsp; first and then login with your own account.
