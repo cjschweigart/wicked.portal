@@ -114,28 +114,28 @@ block content
                     label(for="firstname") First Name:
                     input(type="string" id="firstname" name="firstname").form-control
                     small
-                        span(id="errorFirstname" style="color:red")
+                        span.red(id="errorFirstname")
                 .form-group
                     label(for="lastname") Last Name:
                     input(type="string" id="lastname" name="lastname").form-control
                     small
-                        span(id="errorLastname" style="color:red")
+                        span.red(id="errorLastname")
                 .form-group
                     label(for="email") Email address:
                     input(type="string" id="email" name="email").form-control
                     small
-                        span(id="errorEmail" style="color:red")
+                        span.red(id="errorEmail")
                         span The email address will be used as a username for the API Portal; you will need to verify it. We will send an email to this address with a verification link.
                 .form-group
                     label(for="password") Password:
                     input(type="password" id="password" name="password" minlength="6").form-control
                     small
-                        span(id="errorPassword" style="color:red")
+                        span.red(id="errorPassword")
                 .form-group
                     label(for="password2") Confirm Password:
                     input(type="password" id="password2" name="password2" minlength="6").form-control
                     small
-                        span(id="errorPassword2" style="color:red")
+                        span.red(id="errorPassword2")
                 br
                 if glob.recaptcha && glob.recaptcha.useRecaptcha
                     div(class="g-recaptcha" data-sitekey="#{glob.recaptcha.websiteKey}")
