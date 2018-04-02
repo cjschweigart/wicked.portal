@@ -18,7 +18,7 @@ html(class="no-js", lang="en")
     title #{glob.title} - #{title}
     link(rel='stylesheet' type='text/css' href='/css/bootstrap.min.css')
     link(rel='stylesheet' type='text/css' href='/content/wicked.css')
-    //- link(rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i')
+    link(rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i')
     link(rel="stylesheet" type='text/css' href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css")
     link(rel="stylesheet" type='text/css' href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
     script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js")
@@ -148,7 +148,7 @@ html(class="no-js", lang="en")
                     .col-md-6.text-right
                         | Built by <a href='http://www.haufe-lexware.com' target='_blank' title="Haufe-Lexware">Haufe-Lexware</a>, powered by <a href='http://getkong.org' target='_blank' title="Mashape Kong">Mashape Kong</a>.
 
-            if (authUser && authUser.admin)
+            if (authUser && authUser.admin && !glob.isProduction)
                 .row
                     .col-md-12.text-right.gray80.font10pt
                     if (authUser && authUser.admin)
