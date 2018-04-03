@@ -5,22 +5,22 @@ block scripts
         meta(http-equiv="refresh" content="0; url=/")
     script(type='text/javascript').
         function validateEmail() {
-            var email = $("#email").val();
-            var password = $("#password").val();
-            var emailError = "";
-            var passwordError = "";
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var emailError = '';
+            var passwordError = '';
             if (!email)
-                emailError = "Please enter a value for the email address.";
+                emailError = 'Please enter a value for the email address. ';
             else if (!/.+@.+/.test(email))
-                emailError = "Email address invalid.";
+                emailError = 'Email address invalid. ';
             if (!password)
-                passwordError = "Please enter your password.";
+                passwordError = 'Please enter your password.';
 
             try {
-                $("#errorEmail").text(emailError);
-                $("#errorPassword").text(passwordError);
+                $('#errorEmail').text(emailError);
+                $('#errorPassword').text(passwordError);
             } catch (err) {
-                alert("Validation errored! Check your input values.");
+                alert('Validation errored! Check your input values.');
                 return false;
             }
 
@@ -39,19 +39,19 @@ block content
         h4 You will be redirected to the desired page right after successfully logging in.
 
     if glob.auth.adfs && glob.auth.adfs.useAdfs
-        a(href="/login/adfs" title="Log in with ADFS").btn.btn-block.btn-primary
+        a(href='/login/adfs').btn.btn-block.btn-primary
             i.fa.fa-cloud.fa-lg
             span &nbsp; Log in with ADFS
     if glob.auth.github && glob.auth.github.useGithub
-        a(href="/login/github" title="Log in with GitHub").btn.btn-block.btn-github
+        a(href='/login/github').btn.btn-block.btn-github
             i.fa.fa-github.fa-lg
             span &nbsp; Log in with GitHub
     if glob.auth.google && glob.auth.google.useGoogle
-        a(href="/login/google" title="Log in with Google").btn.btn-block.btn-google
+        a(href='/login/google').btn.btn-block.btn-google
             i.fa.fa-google.fa-lg
             span &nbsp; Log in with Google
     if glob.auth.oauth2 && glob.auth.oauth2.useOauth2
-        a(href="/login/oauth2" title="Log in").btn.btn-block.btn-oauth2
+        a(href='/login/oauth2').btn.btn-block.btn-oauth2
             i.fa.fa-sign-in.fa-lg
             span &nbsp; Log in
 
@@ -61,25 +61,27 @@ block content
         br
 
         if error
-            div(role="alert").alert.alert-danger
+            div(role='alert').alert.alert-danger
                 span(aria-hidden="true").glyphicon.glyphicon-exclamation-sign
                 span.sr-only Error:
                 | &nbsp; #{error}
 
-        form(role="form" action="/login/local" method="post" onsubmit="return validateEmail();")
+        form(role='form' action='/login/local' method='post' onsubmit='return validateEmail();')
             .form-group
-                label(for="email") Email:
-                input(type="string" name="email" id="email").form-control
+                label(for='email') Email:
+                input(type='string' name='email' id='email').form-control
                 small
-                    span.red(id="errorEmail")
+                    span(id='errorEmail' style='color:red')
+
             .form-group
-                label(for="password") Password:
-                input(type="password" name="password" id="password").form-control
+                label(for='password') Password:
+                input(type='password' name='password' id='password').form-control
                 small
-                    span.red(id="errorPassword")
+                    span(id='errorEmail' style='color:red')
+
             button(class='btn btn-primary btn-block' type='submit') Login
 
         h5
-            a(href="/forgotpassword" title="Forgot Password") Forgot password?
+            a(href='/forgotpassword') Forgot password?
         h5
-            a(href="/signup" title="Create a new user") Create a new user.
+            a(href='/signup') Create a new user.
