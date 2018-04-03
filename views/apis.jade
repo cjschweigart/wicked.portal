@@ -23,10 +23,10 @@ mixin apiCategories(apiTags, params)
           +checkBox(tag, params[tag])
         button(type='submit' onclick='checkCategoryFilter()').btn.btn-primary Filter
         &nbsp;
-        a.btn.btn-primary(href="/apis" role="button" title="Clear") Clear
+        a.btn.btn-primary(href='/apis' role='button') Clear
 
 mixin apiDef(anApi)
-    .panel-body.wicked-api-body(style="flex: 1;")
+    .panel-body.wicked-api-body(style='flex: 1;')
       .box
         if glob.views.apis.showApiIcon
             img(src='/images/api-icon.png')
@@ -39,20 +39,20 @@ mixin apiDef(anApi)
                 img.pull-right(src='/images/key-icon-32.png' title='API is secured over API keys')
 
       .box-body
-        a(href='/apis/#{anApi.id}' title="#{anApi.name}")
+        a(href='/apis/#{anApi.id}')
             h4= anApi.name
         if anApi.deprecated
             p.red <b>Deprecated</b>
         p!= anApi.desc
       .box-footer.pull-right
-        a.btn.btn-default(href="/apis/#{anApi.id}" role="button" title="Information") Information &raquo;
+        a.btn.btn-default(href='/apis/#{anApi.id}' role='button') Information &raquo;
 
 
 block scripts
   script(type='text/javascript').
     function checkCategoryFilter() {
-      if($(".tag:checked").length <= 0){
-        $("input[id='filter']").remove();
+      if($('.tag:checked').length <= 0){
+        $('input[id='filter']').remove();
       }
     }
 
@@ -67,24 +67,6 @@ block content
         if desc
             p!= desc
         p &nbsp;
-            //-.owl-item
-                .item
-                    .card
-                        a.card-img(href="https://clarivate.com/blog/news/immuno-oncology-sector-deals-dominate-2017-life-sciences-deal-year-awards/")
-                            img.attachment-featured.size-featured.wp-post-image(src="https://cdn.clarivate.com/wp-content/uploads/2017/11/News-image.png" alt="Immuno-Oncology Sector Deals Dominate 2017 Life Sciences Deal of the Year Awards")
-                        div.card-content
-                            time 2 weeks ago
-                            a.latest-news-title(href="https://clarivate.com/blog/news/immuno-oncology-sector-deals-dominate-2017-life-sciences-deal-year-awards/")
-                                h5 Immuno-Oncology Sector Deals Dominate 2017 Life Sciences Deal of the Year Awards
-            //-.owl-item.active(style="width: 300px;")
-                .item
-                    .card
-                        a.card-img(href="https://clarivate.com/blog/news/immuno-oncology-sector-deals-dominate-2017-life-sciences-deal-year-awards/")
-
-                        .card-content
-                            time 2 weeks ago
-                            a.latest-news-title(href="https://clarivate.com/blog/news/immuno-oncology-sector-deals-dominate-2017-life-sciences-deal-year-awards/")
-                                h5 Immuno-Oncology Sector Deals Dominate 2017 Life Sciences Deal of the Year Awards
 
         .row
             - var length = apilist.length
